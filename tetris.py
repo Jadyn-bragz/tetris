@@ -184,7 +184,7 @@ def convert_shape_format(shape):
 
 #making sure shapes are moving into a valid space 
 def valid_space(shape, grid):
-      accepted_positions = [[j,i) for j in range(10) if grid[1][j] == (0,0,0)] for i in range(20)]
+      accepted_positions = [[(j,i) for j in range(10) if grid[i][j] == (0,0,0)] for i in range(20)]
       accepted_positions = [j for sub in accepted_positions for j in sub]
       formatted  = convert_shape_format(shape)
 
@@ -202,6 +202,16 @@ def check_lost(positions):
             if y < 1:
                  return True
       return False
+
+def clear_rows():
+
+def draw_next_shape():
+
+def update_score():
+
+def max_score():
+
+def draw_window():
 
 def main():
       global Grid
@@ -279,6 +289,8 @@ def main():
 
             if check_lost(locked_position):
                   run = False
+
+def main_menu():
 
 win = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Tetris")
