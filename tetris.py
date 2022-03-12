@@ -205,7 +205,22 @@ def check_lost(positions):
 
 def clear_rows():
 
-def draw_next_shape():
+#displays next falling shape on the right side of the screen
+def draw_next_shape(shape, surface):
+      font = pygame.font.Font('comicsans', 30)
+      label = font.render('Next shape', 1, (255,255,255))
+
+      sx = top_left_x + play_width + 50
+      sy = top_left_y + play_height/2 - 100
+      format = shape.shape[shape.rotation % len(shape.shape)]
+
+      for i,line in enumerate(format):
+            row = list(line)
+            for j, column in enumerate(row):
+                  if column == '0':
+                        pygame.draw.rect(surface, shape.color, (sx + j*30, sy + i*30, 30, 30), 0)
+      
+      surface.blit(label, (sx + 10, sy - 30))
 
 def update_score():
 
@@ -213,7 +228,7 @@ def max_score():
 
 def draw_window():
 
-def main():
+def main(win):
       global Grid
 
       locked_position = {}
@@ -286,6 +301,9 @@ def main():
                   change_piece = False 
 
             draw_window(win)
+
+            draw_next_shape(next_piece, win)
+            pygame.display.update()
 
             if check_lost(locked_position):
                   run = False
