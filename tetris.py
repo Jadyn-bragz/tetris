@@ -232,7 +232,7 @@ def clear_rows(grid, locked):
 
 #displays next falling shape on the right side of the screen
 def draw_next_shape(shape, surface):
-    font = pygame.font.SysFont('comicsans', 30)
+    font = pygame.font.SysFont('Algerian', 30)
     label = font.render('Next Shape', 1, (255,255,255))
 
     sx = top_left_x + play_width + 50
@@ -267,15 +267,15 @@ def max_score():
 
 
 def draw_window(surface, grid, score, last_score):
-    surface.fill((0, 0, 0))
+    surface.fill((0, 0, 102))
 
     pygame.font.init()
-    font = pygame.font.SysFont('Algerian', 10)
+    font = pygame.font.SysFont('Algerian', 30)
     label = font.render('Tetris', 1, (153, 153, 255))
 
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 15))
 
-    font = pygame.font.SysFont('Algerian', 10)
+    font = pygame.font.SysFont('Algerian', 20)
     label = font.render('Score: ' + str(score), 1, (153, 153, 255))
 
     sx = top_left_x + play_width + 30
@@ -390,14 +390,45 @@ def main(win):
 def main_menu(win):  
     run = True
     while run:
-        win.fill((0,0,0))
-        draw_text_middle(win, 'Press Any Key To Play', 25, (255,255,255))
+        win.fill((0,0,102))
+        pygame.font.init()
+
+        pygame.draw.rect(win, (0,204,204), (25, 25, 650, 650), 5)
+
+        x, y = pygame.mouse.get_pos()
+
+        titleFont = pygame.font.SysFont('Algerian', 50)
+        font = pygame.font.SysFont('Algerian', 30)
+
+        label = titleFont.render('Tetris', 1, (0,204,204))
+        win.blit(label, (350 - label.get_width()/2, 250))
+
+        start_label = font.render('START', 1, (0,0,0))
+        quit_label = font.render('QUIT', 1, (0,0,0))
+
+        if (200 - start_label.get_width()/2 - 10) <= x <= (200 + start_label.get_width()/2 + 10) and (400 - start_label.get_height()/2 - 10) <= y <= (400 + start_label.get_height()/2 + 10):
+            pygame.draw.rect(win, (0,0,204), (200 - start_label.get_width()/2 - 10, 400 - start_label.get_height()/2 + 10, 115, 54))
+        else:
+            pygame.draw.rect(win, (51,153,255), (200 - start_label.get_width()/2 - 10, 400 - start_label.get_height()/2 + 10, 115, 54))
+
+        if (500 - 115/2) <= x <= (500 + 115/2) and (400 - quit_label.get_height()/2 - 10) <= y <= (400 + quit_label.get_height()/2 + 10):
+            pygame.draw.rect(win, (0,0,204), (500 - 115/2, 400 - quit_label.get_height()/2 + 10, 115, 54))
+        else:
+            pygame.draw.rect(win, (51,153,255), (500 - 115/2, 400 - quit_label.get_height()/2 +  10, 115, 54))
+
+        win.blit(start_label, (200 - start_label.get_width()/2, 400))
+        win.blit(quit_label , (500 - quit_label.get_width()/2, 400))
+
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            if event.type == pygame.KEYDOWN:
-                main(win)
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if (200 - start_label.get_width()/2 - 115/2) <= x <= (200 + start_label.get_width()/2 + 115/2) and (400 - start_label.get_height()/2 - 54/2) <= y <= (400 + start_label.get_height()/2 + 54/2):
+                    main(win)
+                elif (500 - quit_label.get_width()/2 - 115/2) <= x <= (500 + quit_label.get_width()/2 + 115/2) and (400 - quit_label.get_height()/2 - 54/2) <= y <= (400 + quit_label.get_height()/2 + 54/2):
+                    pygame.quit()
 
     pygame.display.quit()
 
