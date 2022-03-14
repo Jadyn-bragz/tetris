@@ -4,8 +4,8 @@ import random
 pygame.font.init()
 
 # GLOBALS VARS
-s_width = 600
-s_height = 500
+s_width = 800
+s_height = 600
 play_width = 150  # meaning 300 // 10 = 30 width per block
 play_height = 150  # meaning 600 // 20 = 30 height per block
 block_size = 15
@@ -192,9 +192,8 @@ def get_shape():
 def draw_text_middle(surface, text, size, color):
     font = pygame.font.SysFont("Algerian", size, bold=True)
     label = font.render(text, 1, color)
-
-    surface.blit(label, (top_left_x + play_width /2 - (label.get_width()/2), top_left_y + play_height/2 - label.get_height()/2))
-
+    surface.blit(label, (400 - (label.get_width()/2), 300))
+    
 
 #draws grey grid lines 
 def draw_grid(surface, grid):
@@ -392,7 +391,7 @@ def main_menu(win):
     run = True
     while run:
         win.fill((0,0,0))
-        draw_text_middle(win, 'Press Any Key To Play', 60, (255,255,255))
+        draw_text_middle(win, 'Press Any Key To Play', 25, (255,255,255))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
