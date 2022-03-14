@@ -4,11 +4,11 @@ import random
 pygame.font.init()
 
 # GLOBALS VARS
-s_width = 800
-s_height = 600
-play_width = 400 # meaning 300 // 10 = 30 width per block
-play_height = 400 # meaning 600 // 20 = 30 height per block
-block_size = 40
+s_width = 700
+s_height = 700
+play_width = 300 # meaning 300 // 10 = 30 width per block
+play_height = 600 # meaning 600 // 20 = 30 height per block
+block_size = 30
 
 top_left_x = 50 #(s_width - play_width) // 2
 top_left_y = 50 #s_height - play_height
@@ -266,7 +266,7 @@ def max_score():
     return score
 
 
-def draw_window(surface, grid, score=0, last_score = 0):
+def draw_window(surface, grid, score, last_score):
     surface.fill((0, 0, 0))
 
     pygame.font.init()
@@ -351,7 +351,7 @@ def main(win):
                     current_piece.y += 1
                     if not(valid_space(current_piece, grid)):
                         current_piece.y -= 1
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_SPACE:
                     current_piece.rotation += 1
                     if not(valid_space(current_piece, grid)):
                         current_piece.rotation -= 1
