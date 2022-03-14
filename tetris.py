@@ -6,12 +6,12 @@ pygame.font.init()
 # GLOBALS VARS
 s_width = 800
 s_height = 600
-play_width = 150  # meaning 300 // 10 = 30 width per block
-play_height = 150  # meaning 600 // 20 = 30 height per block
-block_size = 15
+play_width = 400 # meaning 300 // 10 = 30 width per block
+play_height = 400 # meaning 600 // 20 = 30 height per block
+block_size = 40
 
-top_left_x = (s_width - play_width) // 2
-top_left_y = s_height - play_height
+top_left_x = 50 #(s_width - play_width) // 2
+top_left_y = 50 #s_height - play_height
 
 
 # SHAPE FORMATS
@@ -193,7 +193,7 @@ def draw_text_middle(surface, text, size, color):
     font = pygame.font.SysFont("Algerian", size, bold=True)
     label = font.render(text, 1, color)
     surface.blit(label, (400 - (label.get_width()/2), 300))
-    
+
 
 #draws grey grid lines 
 def draw_grid(surface, grid):
